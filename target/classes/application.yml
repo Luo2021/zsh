@@ -1,0 +1,24 @@
+server:
+  port: 8090
+  domain: #配合swagger使用 # 待部署域名
+#jdbc
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.128.128:3306/zsh_axzx?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    username: admin
+    password: luoli
+  redis:
+    host: 192.168.128.128
+#mybatis
+mybatis:
+  type-aliases-package: cn.zsh.pojo
+logging:
+  level:
+    cn.zsh: debug
+#短信
+zsh:
+  sms:
+    accessKeyId: LTAI5tKUk7dL9uJ1afmzKP9S
+    accessKeySecret: NyIYl7kTEKbaWcuDMawN6nBLLbEw0l
+    signName: 中石化爱心助学
+    verifyCodeTemplate: SMS_214527404
