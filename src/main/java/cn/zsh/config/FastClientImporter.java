@@ -12,7 +12,7 @@ import org.springframework.jmx.support.RegistrationPolicy;
  * @author luoli
  * @date 2021/5/7 10:11
  * 解决jmx重复注册bean的问题
-  */
+ */
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
 public class FastClientImporter {
 }
