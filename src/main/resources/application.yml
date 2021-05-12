@@ -15,6 +15,15 @@ mybatis:
 logging:
   level:
     cn.zsh: debug
+#fastdfs
+fdfs:
+  so-timeout: 1501 #超时时间
+  connect-timeout: 601 #连接超时时间
+  thumb-image: # 缩略图
+    width: 60
+    height: 60
+  tracker-list: # tracker地址
+    - 192.168.128.128:22122
 #短信
 zsh:
   sms:
@@ -22,3 +31,7 @@ zsh:
     accessKeySecret: NyIYl7kTEKbaWcuDMawN6nBLLbEw0l
     signName: 中石化爱心助学
     verifyCodeTemplate: SMS_214527404
+#url配置
+system:
+  config:
+    url: http://192.168.128.128:8888/

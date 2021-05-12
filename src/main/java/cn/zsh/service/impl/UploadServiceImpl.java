@@ -1,5 +1,6 @@
 package cn.zsh.service.impl;
 
+import cn.zsh.config.SystemConfig;
 import cn.zsh.service.UploadService;
 import com.github.tobato.fastdfs.domain.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
@@ -25,6 +26,9 @@ public class UploadServiceImpl implements UploadService {
 
     @Autowired
     private FastFileStorageClient storageClient;
+
+    @Autowired
+    private SystemConfig systemConfig;
 
     private static final Logger logger= LoggerFactory.getLogger(UploadServiceImpl.class);
 
@@ -67,7 +71,7 @@ public class UploadServiceImpl implements UploadService {
                   file.getInputStream(), file.getSize(), getExtension(file.getOriginalFilename()), null);
 
             //String url = "http://image.leyou.com/upload/"+file.getOriginalFilename();
-            String url = "http://image.leyou.com/"+storePath.getFullPath();
+            String url = systemConfig.getUrl()+storePath.getFullPath();
 //            System.out.println(url);
             return url;
         }catch (Exception e){
