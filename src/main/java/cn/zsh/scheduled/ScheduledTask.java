@@ -23,8 +23,10 @@ import java.util.List;
 public class ScheduledTask {
     @Autowired
     private ScheduleTimeMapper scheduleTimeMapper;
-
-    @Scheduled(fixedDelay = 1000L )
+    //每小时执行一次
+    @Scheduled(cron = "0 0 * * * ?")
+    //每一秒执行一次
+    //@Scheduled(fixedDelay = 1000L )
     public void scheduled(){
         ScheduleTime scheduleTime = new ScheduleTime();
         String maxEndTime = scheduleTimeMapper.queryMaxEndTime();
