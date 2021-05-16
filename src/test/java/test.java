@@ -1,5 +1,6 @@
 import cn.hutool.core.codec.Base64;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -9,7 +10,23 @@ import java.util.Date;
  */
 public class test {
     private static int num = 0;
+    private static BigDecimal unitPrice;
+    private static BigDecimal unitPrice2 = new BigDecimal(2);
     public static void main(String[]args){
+        System.out.println(unitPrice);
+        System.out.println(unitPrice.multiply(unitPrice2));
+        String s ="生产年月test1:2021-01,单价:7,入库年月:2021-01-07 16：47：00";
+        String[] split = s.split(",");
+        System.out.println(split[0]);
+        System.out.println(split[1].substring(split[1].indexOf(":") + 1));
+        for (String str:split) {
+            if (str.contains(":")) {
+                String attributeName = str.substring(0, str.indexOf(":"));
+                String attributeValue = str.substring(str.indexOf(":") + 1);
+                System.out.println(attributeName+": "+attributeValue);
+            }
+        }
+
         Date startTime = new Date(Long.valueOf("1620718280626"));
         Date endTime = new Date(Long.valueOf("1622878280626"));
         System.out.println(startTime);
