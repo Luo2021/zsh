@@ -55,7 +55,7 @@ public class BrandController {
      * @return
      */
     @ApiOperation(value= "品牌新增接口")
-    @PostMapping("/add")
+    @PostMapping("/saveBrand")
     public ResponseEntity<Void>  saveBrand(Brand brand, @RequestParam("categories") List<Long> categories){
         this.brandService.saveBrand(brand, categories);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -68,7 +68,7 @@ public class BrandController {
      * @return
      */
     @ApiOperation(value= "品牌修改接口")
-    @PutMapping("update")
+    @PutMapping("updateBrand")
     public ResponseEntity<Void> updateBrand(Brand brand,@RequestParam("categories") List<Long> categories){
         this.brandService.updateBrand(brand,categories);
         return  ResponseEntity.status(HttpStatus.ACCEPTED).build();
