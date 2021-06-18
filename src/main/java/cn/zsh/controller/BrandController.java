@@ -18,7 +18,7 @@ import java.util.List;
  * Feature:
  */
 @RestController
-@RequestMapping("brand")
+@RequestMapping("/brand")
 @Api(tags = "品牌管理")
 public class BrandController {
     @Autowired
@@ -34,7 +34,7 @@ public class BrandController {
      * @return
      */
     @ApiOperation(value= "分页查询品牌接口")
-    @GetMapping("page")
+    @GetMapping("/page")
     public ResponseEntity<PageResult<Brand>> queryBrandByPage(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                                               @RequestParam(value = "rows", defaultValue = "5") Integer rows,
                                                               @RequestParam(value = "sortBy", required = false) String sortBy,
@@ -55,7 +55,7 @@ public class BrandController {
      * @return
      */
     @ApiOperation(value= "品牌新增接口")
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<Void>  saveBrand(Brand brand, @RequestParam("categories") List<Long> categories){
         this.brandService.saveBrand(brand, categories);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -68,7 +68,7 @@ public class BrandController {
      * @return
      */
     @ApiOperation(value= "品牌修改接口")
-    @PutMapping
+    @PutMapping("update")
     public ResponseEntity<Void> updateBrand(Brand brand,@RequestParam("categories") List<Long> categories){
         this.brandService.updateBrand(brand,categories);
         return  ResponseEntity.status(HttpStatus.ACCEPTED).build();

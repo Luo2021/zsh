@@ -51,7 +51,7 @@ public class SwaggerConfig{
                 // 扫描的路径包
                 .apis(RequestHandlerSelectors.basePackage("cn.zsh"))
                 // 指定路径处理PathSelectors.any()代表所有的路径
-                .paths(adminPathsAnt())
+                .paths(userPathsAnt())
                 .build()
                 .securitySchemes(security())
                 .securityContexts(securityContexts())
@@ -71,7 +71,7 @@ public class SwaggerConfig{
                 // 扫描的路径包
                 .apis(RequestHandlerSelectors.basePackage("cn.zsh"))
                 // 指定路径处理PathSelectors.any()代表所有的路径
-                .paths(frontPathsAnt()) //只监听
+                .paths(uploadPathsAnt()) //只监听
                 .build()
                 .securitySchemes(security())
                 .securityContexts(securityContexts())
@@ -79,10 +79,10 @@ public class SwaggerConfig{
                 .pathMapping("/");
     }
 
-    @Bean("public")
+    @Bean("brand")
     public Docket create2RestApis() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("public")
+                .groupName("brand")
                 .host(domain)
                 .apiInfo(apiInfo())
                 // 是否开启
@@ -91,7 +91,7 @@ public class SwaggerConfig{
                 // 扫描的路径包
                 .apis(RequestHandlerSelectors.basePackage("cn.zsh"))
                 // 指定路径处理PathSelectors.any()代表所有的路径
-                .paths(publicPathsAnt()) //只监听
+                .paths(brandPathsAnt()) //只监听
                 .build()
                 .securitySchemes(security())
                 .securityContexts(securityContexts())
@@ -99,16 +99,40 @@ public class SwaggerConfig{
                 .pathMapping("/");
     }
 
-    private Predicate<String> adminPathsAnt() {
+    @Bean("category")
+    public Docket create3RestApis() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("category")
+                .host(domain)
+                .apiInfo(apiInfo())
+                // 是否开启
+                .enable(swaggerEnabled)
+                .select()
+                // 扫描的路径包
+                .apis(RequestHandlerSelectors.basePackage("cn.zsh"))
+                // 指定路径处理PathSelectors.any()代表所有的路径
+                .paths(categoryPathsAnt()) //只监听
+                .build()
+                .securitySchemes(security())
+                .securityContexts(securityContexts())
+//                .globalOperationParameters(pars) // 针对单个url的验证 如果需要的话
+                .pathMapping("/");
+    }
+
+    private Predicate<String> userPathsAnt() {
         return PathSelectors.ant("/user/**");
     }
 
-    private Predicate<String> frontPathsAnt() {
+    private Predicate<String> uploadPathsAnt() {
         return PathSelectors.ant("/upload/**");
     }
 
-    private Predicate<String> publicPathsAnt() {
-        return PathSelectors.ant("/api/public/**");
+    private Predicate<String> brandPathsAnt() {
+        return PathSelectors.ant("/brand/**");
+    }
+
+    private Predicate<String> categoryPathsAnt() {
+        return PathSelectors.ant("/category/**");
     }
 
     private List<ApiKey> security() {
