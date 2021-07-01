@@ -101,7 +101,7 @@ public class UserController {
      * @return
      */
     @ApiOperation(value= "用户验证接口")
-    @GetMapping("query")
+    @PostMapping("login")
     public ResponseEntity<User> queryUser(@RequestParam("username")String username,@RequestParam("password")String password){
         User user = this.userService.queryUser(username,password);
         if (user == null){
